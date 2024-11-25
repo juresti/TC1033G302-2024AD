@@ -9,24 +9,38 @@ Lampara::Lampara(std::string col,float cos) : color{col},costo{cos},
                                             apagador{Apagador{}} {}
 
 
-    std::string getColor();
-    float getCosto();
-    void setCosto(float c);
+std::string Lampara::getColor() {return color;}
+float Lampara::getCosto() {return costo;}
+void Lampara::setCosto(float c){costo = c;}
 
-    std::string Lampara::encender(){
-        apagador.encender();
-        return "La lampara se enciende";
-    }
+std::string Lampara::encender(){
+    apagador.encender();
+    return "La lampara se enciende";
+}
 
-    std::string apagar();
-    bool Lampara::isEncendida(){
-        return apagador.isEncendido();
+std::string Lampara::apagar(){
+    if (apagador.isEncendido()){
+        apagador.apagar();
+        return "La lampara se ha apagado";
+    } else {
+        return "Ya esta apagada la lampara";
     }
+}
 
-    std::string Lampara::cambiarFoco(int l,std::string c){
-        Foco nuevo{l,c};
-        foco = nuevo;
-        return "Se cambio el foco";
-    }
-    std::string colorFoco();
-    int luminosidadFoco();
+bool Lampara::isEncendida(){
+    return apagador.isEncendido();
+}
+
+std::string Lampara::cambiarFoco(int l,std::string c){
+    Foco nuevo{l,c};
+    foco = nuevo;
+    return "Se cambio el foco";
+}
+
+std::string Lampara::colorFoco(){
+    return foco.getColor();
+}
+
+int Lampara::luminosidadFoco(){
+    return foco.getLuminosidad();
+}
